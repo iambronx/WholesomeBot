@@ -34,17 +34,19 @@ client.on('message', message => {
 		message.channel.send(`Hi, ${message.author}!`);
 	}
 	else if (command === 'niceday') {
+		const taggedUser = message.mentions.users.first();
+
 		if (!args.length) {
 			return message.channel.send(`Have a nice day, ${message.author}!`);
 		}
 		else if (args.length > 1) {
-			return message.channel.send('Too many arguments!');
+			return message.reply('that is too many arguments! You are still beautiful though!');
 		}
-		else if (args[0] === 'help') {
-			return message.channel.send('Usage: !niceday INSERT_HOW_NICE_OF_A_DAY_YOU_WANT. One word only.');
+		else if (!message.mentions.users.size) {
+			return message.reply('only users are accepted as arguments! Still love you!');
 		}
 		else {
-			return message.channel.send(`Have a ${args[0]} nice day, ${message.author}!`);
+			return message.channel.send(`Have a nice day, ${taggedUser}!`);
 		}
 	}
 });
