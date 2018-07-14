@@ -24,15 +24,19 @@ client.on('message', message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
+	// test command to ensure bot functionality
 	if (command === 'test') {
 		message.channel.send('This is a test message. Please refrain from spamming this command as it is completely useless.');
 	}
+	// nut command because why not
 	else if (command === 'nut') {
 		message.channel.send('N U T');
 	}
+	// say hi to the bot
 	else if (command === 'hi') {
 		message.channel.send(`Hi, ${message.author}!`);
 	}
+	// nice day command to make sure someone has a nice day
 	else if (command === 'niceday') {
 		const taggedUser = message.mentions.users.first();
 
