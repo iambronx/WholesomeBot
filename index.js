@@ -19,10 +19,18 @@ client.on('ready', () => {
 client.login(token);
 
 client.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).split(' ');
+	const command = args.shift().toLowerCase();
+
 	if (message.content === `${prefix}test`) {
 		message.channel.send('This is a test message. Please refrain from spamming this command as it is completely useless.');
 	}
 	else if (message.content === `${prefix}nut`) {
 		message.channel.send('N U T');
+	}
+	else if (message.content === `${prefix}hi`) {
+		message.channel.send(`Hi, ${message.author.username}!`);
 	}
 });
