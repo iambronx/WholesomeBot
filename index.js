@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 
 // require the config file
-const config = require('./config.json');
+const { prefix, token } = require('./config.json');
 
 // create a new Discord
 const client = new Discord.Client();
@@ -16,11 +16,13 @@ client.on('ready', () => {
 });
 
 // login to Discord with your app's token
-client.login(config.token);
+client.login(token);
 
 client.on('message', message => {
-	if (message.content === '!test') {
-		// send back "Pong." to the channel the message was sent in
+	if (message.content === `${prefix}test`) {
 		message.channel.send('This is a test message. Please refrain from spamming this command as it is completely useless.');
+	}
+	else if (message.content === `${prefix}nut`) {
+		message.channel.send('N U T');
 	}
 });
