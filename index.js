@@ -21,16 +21,30 @@ client.login(token);
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).split(' ');
+	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
-	if (message.content === `${prefix}test`) {
+	if (command === 'test') {
 		message.channel.send('This is a test message. Please refrain from spamming this command as it is completely useless.');
 	}
-	else if (message.content === `${prefix}nut`) {
+	else if (command === 'nut') {
 		message.channel.send('N U T');
 	}
-	else if (message.content === `${prefix}hi`) {
-		message.channel.send(`Hi, ${message.author.username}!`);
+	else if (command === 'hi') {
+		message.channel.send(`Hi, ${message.author}!`);
+	}
+	else if (command === 'niceday') {
+		if (!args.length) {
+			return message.channel.send(`Have a nice day, ${message.author}!`);
+		}
+		else if (args.length > 1) {
+			return message.channel.send('Too many arguments!');
+		}
+		else if (args[0] === 'help') {
+			return message.channel.send('Usage: !niceday INSERT_HOW_NICE_OF_A_DAY_YOU_WANT. One word only.');
+		}
+		else {
+			return message.channel.send(`Have a ${args[0]} nice day, ${message.author}!`);
+		}
 	}
 });
